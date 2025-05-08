@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PasseCroûte - Le pique-nique chic</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fdf6f0;
+      color: #333;
+    }
+    header, footer {
+      background: #ffe0b2;
+      padding: 1em;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 1em;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    main {
+      padding: 2em;
+      max-width: 900px;
+      margin: auto;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 3em;
+    }
+    .hero h1 {
+      font-size: 2.5em;
+    }
+    .offer-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2em 0;
+    }
+    .offer-table th, .offer-table td {
+      border: 1px solid #ccc;
+      padding: 1em;
+      text-align: center;
+    }
+    .faq {
+      margin-top: 3em;
+    }
+    .faq h3 {
+      margin-top: 1em;
+    }
+    .contact {
+      margin-top: 3em;
+    }
+    .features {
+      margin-top: 3em;
+    }
+    .features ul {
+      list-style: disc;
+      margin-left: 2em;
+    }
+    .map-section {
+      margin-top: 3em;
+      text-align: center;
+    }
+    #map {
+      height: 500px;
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      border: 2px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PasseCroûte 🥪</h1>
+    <nav>
+      <a href="#">Accueil</a>
+      <a href="#">À propos</a>
+      <a href="#">Offres</a>
+      <a href="#">Zones couvertes</a>
+      <a href="#">FAQ</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Trouvez une table, même à Venise.</h1>
+      <p>Avec PasseCroûte, accédez à des centaine de table dans toute la ville</p>
+      <h2>31,41 €/mois — Sans engagement</h2>
+    </section>
+
+    <section class="offers">
+      <h2>Nos Offres</h2>
+      <table class="offer-table">
+        <tr>
+          <th>Nom de l’offre</th>
+          <th>Prix mensuel</th>
+          <th>Avantages</th>
+        </tr>
+        <tr>
+          <td>PasseCroûte Solo</td>
+          <td>31,41 €</td>
+          <td>1 utilisateur / accès illimité</td>
+        </tr>
+        <tr>
+          <td>PasseCroûte Duo</td>
+          <td>54,00 €</td>
+          <td>2 utilisateurs / partage d’itinéraires</td>
+        </tr>
+        <tr>
+          <td>PasseCroûte Famille</td>
+          <td>79,99 €</td>
+          <td>Jusqu’à 5 personnes / zone VIP pique-nique</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="features">
+      <h2>Fonctionnalités des Tables PasseCroûte</h2>
+      <ul>
+        <li>Réservation en ligne via l'app PasseCroûte</li>
+        <li>Port USB solaire pour recharger vos appareils</li>
+        <li>Porte-gobelets intégrés et porte-serviettes</li>
+        <li>Carte interactive pour localiser les tables disponibles</li>
+        <li>Éclairage LED intégré pour les soirées pique-nique</li>
+        <li>Service de nettoyage automatique après chaque réservation</li>
+        <li>Support pour parasol ou auvent en option</li>
+        <li>Accès Wi-Fi gratuit dans les zones couvertes</li>
+      </ul>
+    </section>
+
+    <section class="map-section">
+      <h2>Carte des tables à Venise</h2>
+      <p>Voici une carte interactive des emplacements PasseCroûte dans le centre de Venise :</p>
+      <div id="map"></div>
+    </section>
+
+    <section class="faq">
+      <h2>FAQ</h2>
+      <h3>→ Et si toutes les tables sont prises ?</h3>
+      <p>L’app vous alerte dès qu’une table se libère à proximité.</p>
+      <h3>→ Peut-on y manger autre chose qu’un sandwich ?</h3>
+      <p>Oui, mais évitez les fondues… c’est pas prévu.</p>
+      <h3>→ Les toilettes sont incluses ?</h3>
+      <p>Pas encore. Mais on y travaille.</p>
+    </section>
+
+    <section class="contact">
+      <h2>Contact</h2>
+      <p>📧 contact@malyme.fr</p>
+      <p>📱 App mobile : iOS | Android</p>
+      <p>📍 Siège : 1 rue de la Baguette, 75000 Paris</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MalYme Studio. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    const map = L.map('map').setView([45.4371908, 12.3345898], 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const tables = [
+      [45.4371908, 12.3345898],
+      [45.439220, 12.327180],
+      [45.435140, 12.332230],
+      [45.438000, 12.340000]
+    ];
+
+    tables.forEach(([lat, lon]) => {
+      L.marker([lat, lon]).addTo(map).bindPopup("Table de pique-nique PasseCroûte");
+    });
+  </script>
+</body>
+</html>
