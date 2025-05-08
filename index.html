@@ -92,7 +92,7 @@
   <main>
     <section class="hero">
       <h1>Trouvez une table, même à Venise.</h1>
-      <p>Avec PasseCroûte, accédez à des centaine de table dans toute la ville</p>
+      <p>Avec PasseCroûte, accédez à des centaines de tables dans toute la ville</p>
       <h2>31,41 €/mois — Sans engagement</h2>
     </section>
 
@@ -165,17 +165,31 @@
   </footer>
 
   <script>
-    const map = L.map('map').setView([45.4371908, 12.3345898], 14);
+    const map = L.map('map').setView([45.4371908, 12.3345898], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    function getRandomCoordinates(centerLat, centerLon, radius, count) {
+      const points = [];
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const r = radius * Math.sqrt(Math.random());
+        const dx = r * Math.cos(angle);
+        const dy = r * Math.sin(angle);
+        const lat = centerLat + (dy / 111);
+        const lon = centerLon + (dx / (111 * Math.cos(centerLat * Math.PI / 180)));
+        points.push([lat, lon]);
+      }
+      return points;
+    }
+
+    const veniseCoords = [45.4371908, 12.3345898];
+    const muranoCoords = [45.457000, 12.353000];
     const tables = [
-      [45.4371908, 12.3345898],
-      [45.439220, 12.327180],
-      [45.435140, 12.332230],
-      [45.438000, 12.340000]
+      ...getRandomCoordinates(veniseCoords[0], veniseCoords[1], 1.5, 75),
+      ...getRandomCoordinates(muranoCoords[0], muranoCoords[1], 0.6, 25)
     ];
 
     tables.forEach(([lat, lon]) => {
