@@ -18,12 +18,39 @@
       background: #ffe0b2;
       padding: 1em;
       text-align: center;
+      position: relative;
+    }
+    nav {
+      position: relative;
+      display: inline-block;
     }
     nav a {
       margin: 0 1em;
       text-decoration: none;
       color: #333;
       font-weight: bold;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff3e0;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
     main {
       padding: 2em;
@@ -80,12 +107,13 @@
   <header>
     <h1>PasseCroûte 🥪</h1>
     <nav>
-      <a href="#">Accueil</a>
-      <a href="#">À propos</a>
-      <a href="#">Offres</a>
-      <a href="#">Zones couvertes</a>
-      <a href="#">FAQ</a>
-      <a href="#">Contact</a>
+      <div class="dropdown">
+        <a href="#">Découvrez nos autres produits</a>
+        <div class="dropdown-content">
+          <a href="index.html">PasseCroûte</a>
+          <a href="passevap.html">PasseVap™</a>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -127,6 +155,7 @@
       <ul>
         <li>Réservation en ligne via l'app PasseCroûte</li>
         <li>Port USB solaire pour recharger vos appareils</li>
+        <li>Prises 230V disponibles</li>
         <li>Porte-gobelets intégrés et porte-serviettes</li>
         <li>Carte interactive pour localiser les tables disponibles</li>
         <li>Éclairage LED intégré pour les soirées pique-nique</li>
